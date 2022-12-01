@@ -5,7 +5,7 @@ The purpose is purely educational and every single line of code was written with
 
 ### Programming language
 
-- Python
+- Python 3.9
 
 ### Main libraries
 
