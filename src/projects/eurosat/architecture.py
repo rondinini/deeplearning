@@ -15,18 +15,18 @@ class FCNNetwork(FunctionalModel):
     def connect_layers(self):
         input_layer = Input(shape=(None, None, 3))
         conv = Conv2D(
-            filters=128, 
+            filters=32, 
             kernel_size=5,
-            strides=2,
+            strides=1,
             padding='same',
         )(input_layer)
         conv = BatchNormalization()(conv)
         conv = Activation('relu')(conv)
         conv = Dropout(0.2)(conv)
-        # conv = MaxPool2D(pool_size=2)(conv)
+        conv = MaxPool2D(pool_size=2)(conv)
 
         conv = Conv2D(
-            filters=256, 
+            filters=64, 
             kernel_size=3, 
             strides=1,
             padding='same',
@@ -34,7 +34,7 @@ class FCNNetwork(FunctionalModel):
         conv = BatchNormalization()(conv)
         conv = Activation('relu')(conv)
         conv = Dropout(0.2)(conv)
-        # conv = MaxPool2D(pool_size=2)(conv)
+        conv = MaxPool2D(pool_size=2)(conv)
 
         conv = Conv2D(
             filters=256, 
@@ -44,7 +44,7 @@ class FCNNetwork(FunctionalModel):
         conv = BatchNormalization()(conv)
         conv = Activation('relu')(conv)
         conv = Dropout(0.2)(conv)
-        # conv = MaxPool2D(pool_size=2)(conv)
+        conv = MaxPool2D(pool_size=2)(conv)
         
         conv = Conv2D(
             filters=10, # number of output classes
@@ -68,18 +68,18 @@ class CNNNetwork(FunctionalModel):
     def connect_layers(self):
         input_layer = Input(shape=(64, 64, 3))
         conv = Conv2D(
-            filters=128, 
+            filters=32, 
             kernel_size=5,
-            strides=2,
+            strides=1,
             padding='same',
         )(input_layer)
         conv = BatchNormalization()(conv)
         conv = Activation('relu')(conv)
         conv = Dropout(0.2)(conv)
-        # conv = MaxPool2D(pool_size=2)(conv)
+        conv = MaxPool2D(pool_size=2)(conv)
 
         conv = Conv2D(
-            filters=256, 
+            filters=64, 
             kernel_size=3, 
             strides=1,
             padding='same',
@@ -87,16 +87,17 @@ class CNNNetwork(FunctionalModel):
         conv = BatchNormalization()(conv)
         conv = Activation('relu')(conv)
         conv = Dropout(0.2)(conv)
-        # conv = MaxPool2D(pool_size=2)(conv)
+        conv = MaxPool2D(pool_size=2)(conv)
 
         conv = Conv2D(
-            filters=256, 
+            filters=128, 
             kernel_size=3, 
             padding='same',
         )(conv)
         conv = BatchNormalization()(conv)
         conv = Activation('relu')(conv)
         conv = Dropout(0.2)(conv)
+        conv = MaxPool2D(pool_size=2)(conv)
         
         conv = Flatten()(conv)
 
