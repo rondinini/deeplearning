@@ -70,13 +70,13 @@ class CNNNetwork(FunctionalModel):
         conv = Conv2D(
             filters=128, 
             kernel_size=5,
-            strides=1,
+            strides=2,
             padding='same',
         )(input_layer)
         conv = BatchNormalization()(conv)
         conv = Activation('relu')(conv)
         conv = Dropout(0.2)(conv)
-        conv = MaxPool2D(pool_size=2)(conv)
+        # conv = MaxPool2D(pool_size=2)(conv)
 
         conv = Conv2D(
             filters=256, 
@@ -87,7 +87,7 @@ class CNNNetwork(FunctionalModel):
         conv = BatchNormalization()(conv)
         conv = Activation('relu')(conv)
         conv = Dropout(0.2)(conv)
-        conv = MaxPool2D(pool_size=2)(conv)
+        # conv = MaxPool2D(pool_size=2)(conv)
 
         conv = Conv2D(
             filters=256, 

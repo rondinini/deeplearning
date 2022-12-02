@@ -12,7 +12,7 @@ def callbacks():
             monitor='val_loss', 
             factor=0.4,
             verbose=1,
-            patience=5, 
-            min_lr=0.001
+            patience=10, 
+            min_lr=0.0005
         )
     ]
