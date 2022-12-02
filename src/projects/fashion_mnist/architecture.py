@@ -15,9 +15,9 @@ class CnnFCNNetwork(FunctionalModel):
     def connect_layers(self):
         input_layer = Input(shape=(None, None, 1))
         conv = Conv2D(
-            filters=64, 
-            kernel_size=5,
-            strides=3,
+            filters=128, 
+            kernel_size=7,
+            strides=2,
             padding='same',
         )(input_layer)
         conv = BatchNormalization()(conv)
@@ -26,9 +26,9 @@ class CnnFCNNetwork(FunctionalModel):
         # conv = MaxPool2D(pool_size=2)(conv)
 
         conv = Conv2D(
-            filters=128, 
-            kernel_size=3, 
-            strides=3,
+            filters=256, 
+            kernel_size=5, 
+            strides=2,
             padding='same',
         )(conv)
         conv = BatchNormalization()(conv)
