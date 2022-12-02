@@ -22,7 +22,7 @@ class FCNNetwork(FunctionalModel):
         )(input_layer)
         conv = BatchNormalization()(conv)
         conv = Activation('relu')(conv)
-        conv = Dropout(0.2)(conv)
+        conv = Dropout(0.3)(conv)
         conv = MaxPool2D(pool_size=2)(conv)
 
         conv = Conv2D(
@@ -33,7 +33,7 @@ class FCNNetwork(FunctionalModel):
         )(conv)
         conv = BatchNormalization()(conv)
         conv = Activation('relu')(conv)
-        conv = Dropout(0.2)(conv)
+        conv = Dropout(0.3)(conv)
         conv = MaxPool2D(pool_size=2)(conv)
 
         conv = Conv2D(
@@ -43,7 +43,7 @@ class FCNNetwork(FunctionalModel):
         )(conv)
         conv = BatchNormalization()(conv)
         conv = Activation('relu')(conv)
-        conv = Dropout(0.2)(conv)
+        conv = Dropout(0.3)(conv)
         conv = MaxPool2D(pool_size=2)(conv)
         
         conv = Conv2D(
@@ -75,7 +75,7 @@ class CNNNetwork(FunctionalModel):
         )(input_layer)
         conv = BatchNormalization()(conv)
         conv = Activation('relu')(conv)
-        conv = Dropout(0.2)(conv)
+        conv = Dropout(0.3)(conv)
         conv = MaxPool2D(pool_size=2)(conv)
 
         conv = Conv2D(
@@ -86,7 +86,7 @@ class CNNNetwork(FunctionalModel):
         )(conv)
         conv = BatchNormalization()(conv)
         conv = Activation('relu')(conv)
-        conv = Dropout(0.2)(conv)
+        conv = Dropout(0.3)(conv)
         conv = MaxPool2D(pool_size=2)(conv)
 
         conv = Conv2D(
@@ -96,7 +96,7 @@ class CNNNetwork(FunctionalModel):
         )(conv)
         conv = BatchNormalization()(conv)
         conv = Activation('relu')(conv)
-        conv = Dropout(0.2)(conv)
+        conv = Dropout(0.3)(conv)
         conv = MaxPool2D(pool_size=2)(conv)
         
         conv = Flatten()(conv)
