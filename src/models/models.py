@@ -1,5 +1,6 @@
 import os
 from abc import ABC, abstractmethod
+from IPython.display import display
 import tensorflow as tf
 from pathlib import Path
 from logging import getLogger
@@ -27,7 +28,7 @@ class FunctionalModel(ABC):
         with open(summary_fn, 'w') as f:
             model.summary(print_fn=lambda x: f.write(x + '\n'))
         graph_fn = Path(self.filepath) / Path(self.name + '_graph.png')
-        tf.keras.utils.plot_model(
+        graph = tf.keras.utils.plot_model(
             model,
             to_file=graph_fn,
             show_shapes=True,
@@ -36,6 +37,7 @@ class FunctionalModel(ABC):
             expand_nested=True,
             show_layer_activations=True
         )
+        display(graph)
         return model
 
 
