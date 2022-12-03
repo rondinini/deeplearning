@@ -22,10 +22,10 @@ The purpose is purely educational and every single line of code was written with
 ### Projects summary (will be updated over time):
 
 - NLP
-    1. AG News | Text Classification 
+    1. [AG News](https://github.com/rondinini/deeplearning/blob/4315f45977fe6fb1d131330e378546d76d202627/ag_news.ipynb) | Text Classification 
     2. IMDB Reviews | Sentiment Analysis on movies' reviews
     3. IMDB Reviews | Predicting the next word
     
 - Computer Vision:
-    1. MNIST | Classification of hand-written 0-9 digits
-    2. Fashion MNIST | Classification of Zalando's products
+    1. [Eurosat](https://github.com/rondinini/deeplearning/blob/4315f45977fe6fb1d131330e378546d76d202627/eurosat.ipynb) | Classification of satellite images
+    2. [Fashion MNIST](https://github.com/rondinini/deeplearning/blob/4315f45977fe6fb1d131330e378546d76d202627/fashion_mnist.ipynb) | Classification of Zalando's products
