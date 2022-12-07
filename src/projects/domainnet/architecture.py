@@ -78,7 +78,7 @@ class CNNNDomainNet(FunctionalModel):
         super(CNNNDomainNet, self).__init__(**args)
 
     def connect_layers(self):
-        input_layer = Input(shape=(None, None, 3))
+        input_layer = Input(shape=(128, 128, 3))
         conv = Conv2D(
             filters=64, 
             kernel_size=5,
