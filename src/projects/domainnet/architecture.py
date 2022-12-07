@@ -70,3 +70,64 @@ class FCNDomainNet(FunctionalModel):
         model.compile(optimizer=optimizer, loss='sparse_categorical_crossentropy', metrics=['accuracy'])
         
         return model
+
+
+class CNNNDomainNet(FunctionalModel):
+
+    def __init__(self, **args):
+        super(CNNNDomainNet, self).__init__(**args)
+
+    def connect_layers(self):
+        input_layer = Input(shape=(None, None, 3))
+        conv = Conv2D(
+            filters=64, 
+            kernel_size=5,
+            strides=1,
+            padding='same',
+        )(input_layer)
+        conv = BatchNormalization()(conv)
+        conv = Activation('relu')(conv)
+        conv = Dropout(0.3)(conv)
+        conv = MaxPool2D(pool_size=2)(conv)
+
+        conv = Conv2D(
+            filters=128, 
+            kernel_size=3,
+            strides=1,
+            padding='same',
+        )(input_layer)
+        conv = BatchNormalization()(conv)
+        conv = Activation('relu')(conv)
+        conv = Dropout(0.3)(conv)
+        conv = MaxPool2D(pool_size=2)(conv)
+
+        conv = Conv2D(
+            filters=128, 
+            kernel_size=3, 
+            strides=1,
+            padding='same',
+        )(conv)
+        conv = BatchNormalization()(conv)
+        conv = Activation('relu')(conv)
+        conv = Dropout(0.3)(conv)
+        conv = MaxPool2D(pool_size=2)(conv)
+
+        conv = Conv2D(
+            filters=256, 
+            kernel_size=3, 
+            padding='same',
+        )(conv)
+        conv = BatchNormalization()(conv)
+        conv = Activation('relu')(conv)
+        conv = Dropout(0.3)(conv)
+        conv = MaxPool2D(pool_size=2)(conv)
+        
+        conv = Flatten()(conv)
+
+        dense_output = Dense(345)(conv)
+        output = Activation('softmax')(dense_output)
+
+        model = self._build_model(inputs=input_layer, outputs=output)
+        model.compile(optimizer=optimizer, loss='sparse_categorical_crossentropy', metrics=['accuracy'])
+        
+        return model
