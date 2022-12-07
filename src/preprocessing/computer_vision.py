@@ -7,7 +7,7 @@ def reshaping(image, pixels):
     return tf.reshape(image, (pixels, pixels, -1))
 
 def resize(image, target_height, target_width):
-    return tf.image.resize_with_crop_or_pad(image, target_height, target_width)
+    return tf.image.resize_with_pad(image, target_height, target_width)
 
 def augmentation(image):       
     image = tf.image.random_contrast(image, 0.5, 1.5)
