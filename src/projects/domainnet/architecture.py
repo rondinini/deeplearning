@@ -72,10 +72,10 @@ class FCNDomainNet(FunctionalModel):
         return model
 
 
-class CNNNDomainNet(FunctionalModel):
+class CNNDomainNet(FunctionalModel):
 
     def __init__(self, **args):
-        super(CNNNDomainNet, self).__init__(**args)
+        super(CNNDomainNet, self).__init__(**args)
 
     def connect_layers(self):
         input_layer = Input(shape=(128, 128, 3))

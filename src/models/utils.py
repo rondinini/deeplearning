@@ -1,6 +1,7 @@
 import tensorflow as tf
 
-def callbacks(tensorboard_logdir):
+def callbacks(checkpoint_logdir, tensorboard_logdir):
+    checkpoint_fp = str(checkpoint_logdir) + '/weights.{epoch:02d}-{val_loss:.2f}.hdf5'
     return [
         tf.keras.callbacks.EarlyStopping(
             monitor='val_loss',
@@ -25,5 +26,12 @@ def callbacks(tensorboard_logdir):
             profile_batch=0,
             embeddings_freq=0,
             embeddings_metadata=None,
+        ),
+        tf.keras.callbacks.ModelCheckpoint(
+            filepath=checkpoint_fp,
+            save_freq='epoch',
+            verbose=1,
+            save_weights_only=True,
+            monitor='val_loss',
         )
     ]
