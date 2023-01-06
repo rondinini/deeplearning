@@ -171,8 +171,8 @@ class GANGenerator(FunctionalModel):
 
     def connect_layers(self, codings_size):
         input_layer = Input(shape=(codings_size, ))
-        x = Dense(64 * 64 * 128)(input_layer)
-        x = Reshape((64, 64, 128))(x)
+        x = Dense(16 * 16 * 128)(input_layer)
+        x = Reshape((16, 16, 128))(x)
         x = BatchNormalization()(x)
 
         x = Conv2DTranspose(
@@ -239,6 +239,8 @@ class GAN(FunctionalModel):
         input_layer = Input(shape=(codings_size, ))
     
         generator_output = self.generator(input_layer)
+        # Making the discriminator non trainable
+        self.discriminator.trainable = False
         discriminator_output = self.discriminator(generator_output)
 
         model = self._build_model(inputs=input_layer, outputs=discriminator_output)
