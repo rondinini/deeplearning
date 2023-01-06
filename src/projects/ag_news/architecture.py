@@ -3,7 +3,7 @@ from tensorflow.keras.layers import (
     Dense, Lambda, BatchNormalization, Dropout, 
     Activation, GRU, Embedding, Conv1D)
 from tensorflow.keras import Model, Input
-from tensorflow.keras.optimizers import Adam
+from tensorflow.keras.optimizers.legacy import Adam
 import tensorflow.keras.backend as K
 
 from src.models.models import FunctionalModel

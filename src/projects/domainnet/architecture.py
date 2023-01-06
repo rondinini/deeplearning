@@ -1,7 +1,7 @@
 import tensorflow as tf
 from tensorflow.keras.layers import Dense, Conv2D, MaxPool2D, Flatten, BatchNormalization, Dropout, Activation, GlobalMaxPooling2D
 from tensorflow.keras import Input
-from tensorflow.keras.optimizers import Adam
+from tensorflow.keras.optimizers.legacy import Adam
 
 from src.models.models import FunctionalModel
 from src.models.layers import ResNetBlock
@@ -142,24 +142,27 @@ class CnnResBlock(FunctionalModel):
             'kernel_size': 5,
             'padding': 'same',
             'activation': 'relu',
-            'dropout': 0.3,
+            'dropout': 0.2,
             'use_max_pool': False,
+            'strides': 2,
         }
         self.resnet_two_params = {
             'filters': 128,
             'kernel_size': 3,
             'padding': 'same',
             'activation': 'relu',
-            'dropout': 0.3,
+            'dropout': 0.2,
             'use_max_pool': False,
+            'strides': 2,
         }
         self.resnet_three_params = {
             'filters': 256,
             'kernel_size': 3,
             'padding': 'same',
             'activation': 'relu',
-            'dropout': 0.3,
+            'dropout': 0.2,
             'use_max_pool': False,
+            'strides': 2,
         }
 
     def connect_layers(self):

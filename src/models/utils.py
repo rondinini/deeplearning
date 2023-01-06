@@ -1,6 +1,9 @@
+import os
 import tensorflow as tf
 
 def callbacks(checkpoint_logdir, tensorboard_logdir):
+    if not os.path.exists(checkpoint_logdir):
+        os.makedirs(checkpoint_logdir)
     checkpoint_fp = str(checkpoint_logdir) + '/weights.{epoch:02d}-{val_loss:.2f}.hdf5'
     return [
         tf.keras.callbacks.EarlyStopping(
