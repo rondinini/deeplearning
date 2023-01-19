@@ -171,17 +171,26 @@ class GANGenerator(FunctionalModel):
 
     def connect_layers(self, codings_size):
         input_layer = Input(shape=(codings_size, ))
-        x = Dense(16 * 16 * 128)(input_layer)
-        x = Reshape((16, 16, 128))(x)
+        x = Dense(8 * 8 * 256)(input_layer)
+        x = Reshape((8, 8, 256))(x)
         x = BatchNormalization()(x)
 
         x = Conv2DTranspose(
-            filters=64, 
+            filters=256, 
             kernel_size=5, 
             strides=2, 
             padding='same'
         )(x)
-        x = Activation('relu')(x)
+        x = Activation('selu')(x)
+        x = BatchNormalization()(x)
+
+        x = Conv2DTranspose(
+            filters=256, 
+            kernel_size=5, 
+            strides=2, 
+            padding='same'
+        )(x)
+        x = Activation('selu')(x)
         x = BatchNormalization()(x)
         
         x = Conv2DTranspose(
@@ -203,7 +212,7 @@ class GANDiscriminator(FunctionalModel):
     def connect_layers(self, batch_input_shape: tuple):
         input_layer = Input(batch_input_shape=batch_input_shape)
         x = Conv2D(
-            filters=64,
+            filters=32,
             kernel_size=5,
             strides=2,
             padding='same',
@@ -212,7 +221,16 @@ class GANDiscriminator(FunctionalModel):
         x = Dropout(0.4)(x)
         
         x = Conv2D(
-            filters=128,
+            filters=32,
+            kernel_size=5,
+            strides=2,
+            padding='same',
+        )(x)
+        x = LeakyReLU(0.2)(x)
+        x = Dropout(0.4)(x)
+
+        x = Conv2D(
+            filters=32,
             kernel_size=5,
             strides=2,
             padding='same',
